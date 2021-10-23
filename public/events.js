@@ -62,9 +62,9 @@ removeButtons = () => {
         btnTwo.style.display = 'block';
     }
 
-    const card = document.querySelector('.card-flex');
-    let id = card.id;
-    console.log(id);
+    // const card = document.querySelector('.card-flex');
+    // let id = card.id;
+    // console.log(id);
     // window.history.pushState(`${id}`, 'id', `/selected=${http.bookNum}`);
 }
 
@@ -106,6 +106,14 @@ rnd = () => {
         http.fetchAPI()
             .then((data) => {
                 interface.showInfo(data.info);
+                interface.showAlert('Successfully Generated Random Joke', 'green');
+                setTimeout(() => {
+                    interface.clearAlert();
+                }, 3500)
+            })
+            .catch((err) => {
+                interface.showError();
+                console.log(err);
             });
     })
 }
@@ -124,6 +132,10 @@ searchBar = () => {
                 .then((data) => {
                     interface.showInfo(data.info);
                     exceedVal();
+                })
+                .catch((err) => {
+                    interface.showError();
+                    console.log(err);
                 });
         }
     })

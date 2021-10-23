@@ -1,19 +1,22 @@
 class ui {
 
 
+
     // Populates HTML after performing API call
     showInfo = (info) => {
+
+        let val = 0;
 
         // Months
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
         // Days
         const ttl = info.transcript;
-        const rep = ttl.replace(/[\{\}\[\]\\\/]/gi, '');
+        const rep = ttl.replace(/[\{\}\>\<\[\]\\\/]/gi, '');
 
         document.querySelector('.info').innerHTML =
             `
-            <div class="card text-center">
+        <div class="card text-center">
                 <div class="card-flex flex" id=box-${info.num}>
                     <img src="${info.img}" alt="${info.alt}" >
 
@@ -34,13 +37,15 @@ class ui {
         document.querySelector('.info').innerHTML =
             `
             <div class="card text-center">
-                <div class="flex red">
+                <div class="flex">
                 <h1 class="err">404</h1>
                 <h2>Page not found</h2>
                 <p>The page you are looking for does not exist or another error occurred.</p>
                 </div>
             </div>
         `
+
+        this.showAlert('Joke not found', 'red');
     }
 
 
@@ -55,8 +60,19 @@ class ui {
 
 
     // Shows alert after every joke search
-    showAlert = (msg) => {
+    showAlert = (msg, className) => {
 
+        // Remove any type of existing alert before adding this error.
+        this.clearAlert();
+
+        const div = document.createElement('div');
+        div.className = `alert text-center ${className}`;
+        div.textContent = `${msg}`;
+
+
+        // Putting this alert above the info div
+        const info = document.querySelector('.info');
+        info.insertBefore(div, info.childNodes[0]);
     }
 
 

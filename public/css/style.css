@@ -186,6 +186,28 @@ footer
 }
 
 
+/* ALERT */
+.alert
+{
+    font-weight: bold;
+    padding: 0.5em;
+    margin-top: 1.2em;
+    border-radius: 6px;
+}
+
+.red
+{
+    background: rgb(255, 201, 209);
+    color: red;
+}
+
+
+.green
+{
+    background: lightgreen;
+    color: rgb(0, 118, 0);
+}
+
 @media(max-width: 768px)
 {
     img
